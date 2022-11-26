@@ -1,11 +1,10 @@
-#include "vector.hpp"
-#include "reverse_iterator.hpp"
-#include "iterator.hpp"
+#include "vector/vector.hpp"
+#include "vector/reverse_iterator.hpp"
 #include "vector"
-#include "iterator"
 
 #define ecayir ft
 #define Vector vector
+#define nextLine std::cout << "█▄░█ █▀▀ ▀▄▀ ▀█▀   ▀█▀ █▀▀ █▀ ▀█▀   █▀▀ ▄▀█ █▀ █▀▀\n█░▀█ ██▄ █░█ ░█░   ░█░ ██▄ ▄█ ░█░   █▄▄ █▀█ ▄█ ██▄\n\te̳c̳a̳y̳i̳r̳\n" << std::endl
 
 int main()
 {
@@ -24,6 +23,7 @@ int main()
             std::cout << " " << *_iter;
         std::cout << std::endl;
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Vector Assign content (operator=) ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> ecole(5, 5);
@@ -33,6 +33,7 @@ int main()
         std::cout << "Ecole size: " << ecole.size() << "\n";
         std::cout << "Kocaeli size: " << Kocaeli.size() << "\n";
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Return iterator to beginning ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> vec;
@@ -43,6 +44,7 @@ int main()
             std::cout << " " << *_itt;
         std::cout << std::endl;
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~  reverse iterator to reverse beginning ~~~~~~~~~~" << std::endl;
 	    ecayir::Vector<int> myvector1 (5);  // 5 default-constructed ints
@@ -55,6 +57,7 @@ int main()
 	    	std::cout << ' ' << *it1;
 	    std::cout << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~  Return maximum size ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> myvector1;
@@ -63,6 +66,7 @@ int main()
 	    std::cout << "capacity: " << myvector1.capacity() << "\n";
 	    std::cout << "max_size: " << myvector1.max_size() << "\n";
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~  Change size ~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> myvector1;
@@ -76,6 +80,7 @@ int main()
 			std::cout << ' ' << myvector1[i];
 		std::cout << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Test whether vector is empty ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> myvector1;
@@ -88,6 +93,7 @@ int main()
 	    }
 	    std::cout << "total: " << sum1 << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Request a change in capacity ~~~~~~~~~~" << std::endl;
 	    ecayir::Vector<int>::size_type sz1;
@@ -113,6 +119,7 @@ int main()
 	    	}
 	    }
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Access element ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> myvector1 (10);
@@ -130,6 +137,7 @@ int main()
 	    	std::cout << ' ' << myvector1[i];
 	    std::cout << '\n';
     }
+	nextLine;
     {
         std::cout << "------------- Access element -------------" << std::endl;
 	    ecayir::Vector<int> myvector1 (10);
@@ -140,6 +148,7 @@ int main()
 	    	std::cout << ' ' << myvector1.at(i);
 	    std::cout << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Access first element ~~~~~~~~~~" << std::endl;
 	    ecayir::Vector<int> myvector1;
@@ -148,6 +157,7 @@ int main()
 	    myvector1.front() -= myvector1.back();
 	    std::cout << "myvector.front() is now " << myvector1.front() << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Access last element ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> myvector1;
@@ -161,6 +171,7 @@ int main()
 	    	std::cout << ' ' << myvector1[i];
 	    std::cout << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Assign vector content ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> first1;
@@ -176,6 +187,7 @@ int main()
 	    std::cout << "Size of second: " << int (second1.size()) << '\n';
 	    std::cout << "Size of third: " << int (third1.size()) << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Clear content ~~~~~~~~~~" << std::endl;
 	    ecayir::Vector<int> myvector1;
@@ -198,6 +210,7 @@ int main()
 			std::cout << ' ' << myvector1[i];
 		std::cout << '\n';
     }
+	nextLine;
     {
         std::cout << "~~~~~~~~~~ Insert elements ~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> myvector1(3, 100);
@@ -221,6 +234,7 @@ int main()
 			std::cout << ' ' << *it1;
 		std::cout << '\n';
     }
+	/* nextLine;
 	{
         std::cout << "~~~~~~~~~~ Erase elements ~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> myvector1;
@@ -243,7 +257,8 @@ int main()
 		for (unsigned i=0; i<myvector1.size(); ++i)
 			std::cout << ' ' << myvector1[i];
 		std::cout << std::endl;
-	}
+	} */
+	nextLine;
 	{
         std::cout << "~~~~~~~~~~ Swap content ~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> foo1(3, 100);   // three ints with a value of 100
@@ -266,6 +281,7 @@ int main()
 			std::cout << ' ' << bar1[i];
 		std::cout << '\n';
 	}
+	nextLine;
 	{
         std::cout << "~~~~~~~~~~ Get allocator~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> myvector;
@@ -279,6 +295,7 @@ int main()
 		for (i=0; i<5; i++) myvector.get_allocator().destroy(&p[i]);
 		myvector.get_allocator().deallocate(p,5);
 	}
+	nextLine;
 	{
 
 		ecayir::Vector<int> foo (1,200);
@@ -291,6 +308,7 @@ int main()
 		if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
 		if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
 	}
+	nextLine;
 	{
         std::cout << "~~~~~~~~~~ Exchange contents of vectors ~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> foo (3,100);   // three ints with a value of 100
@@ -304,6 +322,7 @@ int main()
 			std::cout << ' ' << *it;
 		std::cout << '\n';
 	}
+	nextLine;
 	{
         std::cout << "~~~~~~~~~~ compare it and const-it ~~~~~~~~~~" << std::endl;
 		ecayir::Vector<int> foo (3,100);   // three ints with a value of 100

@@ -1,13 +1,16 @@
-#ifndef  MAPITERATOR_HPP
+#ifndef MAPITERATOR_HPP
 # define MAPITERATOR_HPP
 
-# include "iostream"
-# include "string"
-# include "../vector/iterator_traits.hpp"
+#include <iostream>
+#include <string>
+#include "../vector/reverse_iterator.hpp"
+#include "tree.hpp"
+#include "utils.hpp"
 
 namespace ft
 {
-	template<class T, class Node_ptr>
+    // allocator_type::pointer ve node_ptr
+    template<class T, class Node_ptr>
 	class TreeIter : public std::iterator<std::bidirectional_iterator_tag, T>
 	{
 		public:
@@ -36,8 +39,7 @@ namespace ft
 			pointer			operator->()							{ return (&(operator*())); };
 			reference		operator[]( difference_type n ) const	{ return (*(this->_it + n)); };
 	};
-
-	template <class T, class Node_ptr>
+    template <class T, class Node_ptr>
 	bool operator== (const TreeIter<T, Node_ptr>& lhs, const TreeIter<T, Node_ptr>& rhs) { return (lhs.base() == rhs.base()); };
 	template <class T, class Node_ptr>
 	bool operator!= (const TreeIter<T, Node_ptr>& lhs, const TreeIter<T, Node_ptr>& rhs) { return (lhs.base() != rhs.base()); };

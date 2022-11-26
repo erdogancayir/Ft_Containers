@@ -1,17 +1,17 @@
-#include "stack/stack.hpp"
 #include <string>
 #include <deque>
+#include "stack/stack.hpp"
 #include <stack>
 #include <stdlib.h>
 
-#ifndef	ecayir
-#define	ecayir	ft
+#ifndef	PH
+#define	PH	ft
 #endif
 
 #define COUNT (MAX_RAM / (int)sizeof(Buffer))
 
 template<typename T>
-class MutantStack : public ecayir::stack<T>
+class MutantStack : public PH::stack<T>
 {
 public:
 	MutantStack() {std::cout << "====================\n";}
@@ -32,7 +32,7 @@ public:
 int main()
 {
 	{
-		ecayir::stack<int> stack_int;
+		PH::stack<int> stack_int;
 
 		MutantStack<char> iterable_stack;
 

@@ -3,15 +3,14 @@
 #include <stack>
 #include <exception>
 #include <utility>
-#include "map/iterator.hpp"
+#include "vector/vector.hpp"
 #include "map/map.hpp"
-#include "map/tree.hpp"
-#include "map/pair.hpp"
+#include "stack/stack.hpp"
 
-#define NEXTD std::cout << "<---------- ---------- ---------- ---------- ---------- ----------|---------- ---------- ---------- ---------- ---------- ----------|" << std::endl
+#define nextLine std::cout << "█▄░█ █▀▀ ▀▄▀ ▀█▀   ▀█▀ █▀▀ █▀ ▀█▀   █▀▀ ▄▀█ █▀ █▀▀\n█░▀█ ██▄ █░█ ░█░   ░█░ ██▄ ▄█ ░█░   █▄▄ █▀█ ▄█ ██▄\n\te̳c̳a̳y̳i̳r̳\n" << std::endl
 
-#ifndef PH
-#define PH ft
+#ifndef Kocaeli
+#define Kocaeli ft
 #endif
 
 bool fncomp (char lhs, char rhs) {return lhs<rhs;}
@@ -24,49 +23,49 @@ struct classcomp {
 int main()
 {
 	{
-		PH::map<char,int> first;
+		Kocaeli::map<char,int> first;
 
 		first['a']=10;
 		first['b']=30;
 		first['c']=50;
 		first['d']=70;
 
-		PH::map<char,int> second (first.begin(),first.end());
+		Kocaeli::map<char,int> second (first.begin(),first.end());
 
-		PH::map<char,int> third (second);
+		Kocaeli::map<char,int> third (second);
 
-		PH::map<char,int,classcomp> fourth;                 // class as Compare
+		Kocaeli::map<char,int,classcomp> fourth;                 // class as Compare
 
 		bool(*fn_pt)(char,char) = fncomp;
-		PH::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
+		Kocaeli::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
 
 	}	
-	
+	nextLine;
 	{
-		PH::map<char, int> first;
-		PH::map<char, int> second;
+		Kocaeli::map<char, int> first;
+		Kocaeli::map<char, int> second;
 		first['x'] = 8;
 		first['y'] = 16;
 		first['z'] = 32;
 		second = first;				  // second now contains 3 ints
-		first = PH::map<char, int>(); // and first is now empty
+		first = Kocaeli::map<char, int>(); // and first is now empty
 		std::cout << "Size of first: " << first.size() << '\n';
 		std::cout << "Size of second: " << second.size() << '\n';
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<char, int> mymap;
+		Kocaeli::map<char, int> mymap;
 		mymap['b'] = 100;
 		mymap['a'] = 200;
 		mymap['c'] = 300;
 		// show content:
-		for (PH::map<char, int>::iterator it = mymap.begin(); it != mymap.end(); ++it)
+		for (Kocaeli::map<char, int>::iterator it = mymap.begin(); it != mymap.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 		std::cout << "mymap.size() is " << mymap.size() << '\n';
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<char, std::string> mymap;
+		Kocaeli::map<char, std::string> mymap;
 		mymap['a'] = "an element";
 		mymap['b'] = "another element";
 		mymap['c'] = mymap['b'];
@@ -78,14 +77,14 @@ int main()
 		std::cout << "mymap.size() is " << mymap.size() << '\n';
 		// mymap.prettyPrint();
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<char, int> mymap;
+		Kocaeli::map<char, int> mymap;
 		// first insert function version (single parameter):
-		mymap.insert(PH::pair<char, int>('a', 100));
-		mymap.insert(PH::pair<char, int>('z', 200));
-		PH::pair<PH::map<char, int>::iterator, bool> ret;
-		ret = mymap.insert(PH::pair<char, int>('z', 500));
+		mymap.insert(Kocaeli::pair<char, int>('a', 100));
+		mymap.insert(Kocaeli::pair<char, int>('z', 200));
+		Kocaeli::pair<Kocaeli::map<char, int>::iterator, bool> ret;
+		ret = mymap.insert(Kocaeli::pair<char, int>('z', 500));
 		if (ret.second == false)
 		{
 			std::cout << "element 'z' already existed";
@@ -97,11 +96,11 @@ int main()
 			std::cout << " with a value of " << ret.first->second << '\n';
 		}
 		// second insert function version (with hint position):
-		PH::map<char, int>::iterator it = mymap.begin();
-		mymap.insert(it, PH::pair<char, int>('b', 300)); // max efficiency inserting
-		mymap.insert(it, PH::pair<char, int>('c', 400));
+		Kocaeli::map<char, int>::iterator it = mymap.begin();
+		mymap.insert(it, Kocaeli::pair<char, int>('b', 300)); // max efficiency inserting
+		mymap.insert(it, Kocaeli::pair<char, int>('c', 400));
 		// third insert function version (range insertion):
-		PH::map<char, int> anothermap;
+		Kocaeli::map<char, int> anothermap;
 		anothermap.insert(mymap.begin(), mymap.find('c'));
 		std::cout << mymap.size() << std::endl;
 		// showing contents:
@@ -113,10 +112,10 @@ int main()
 			std::cout << it->first << " => " << it->second << '\n';
 		// mymap.prettyPrint();
 	}exit(1);
-	NEXTD;
+	nextLine;
 	{
-		PH::map<char, int> mymap;
-		PH::map<char, int>::iterator it;
+		Kocaeli::map<char, int> mymap;
+		Kocaeli::map<char, int>::iterator it;
 		mymap['a'] = 50;
 		mymap['b'] = 100;
 		mymap['c'] = 150;
@@ -133,10 +132,10 @@ int main()
 		std::cout << "d => " << mymap.find('d')->second << '\n';
 		// std::cout << "d => " << mymap.find('b')->second << '\n';
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<int, int> mymap;
-		PH::map<int, int>::iterator it;
+		Kocaeli::map<int, int> mymap;
+		Kocaeli::map<int, int>::iterator it;
 		// insert some values:
 		mymap[1] = 10;
 		mymap[7] = 20;
@@ -145,7 +144,7 @@ int main()
 		mymap[77] = 50;
 		mymap[6] = 60;
 		// mymap.print();
-		NEXTD;
+		nextLine;
 		it = mymap.find(6);
 		mymap.erase(it);	// erasing by iterator
 		mymap.erase(10);	// erasing by key
@@ -156,9 +155,9 @@ int main()
 		for (it = mymap.begin(); it != mymap.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<char, int> foo, bar;
+		Kocaeli::map<char, int> foo, bar;
 		foo['x'] = 100;
 		foo['y'] = 200;
 		bar['a'] = 11;
@@ -166,30 +165,30 @@ int main()
 		bar['c'] = 33;
 		foo.swap(bar);
 		std::cout << "foo contains:\n";
-		for (PH::map<char, int>::iterator it = foo.begin(); it != foo.end(); ++it)
+		for (Kocaeli::map<char, int>::iterator it = foo.begin(); it != foo.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 		std::cout << "bar contains:\n";
-		for (PH::map<char, int>::iterator it = bar.begin(); it != bar.end(); ++it)
+		for (Kocaeli::map<char, int>::iterator it = bar.begin(); it != bar.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 	}
-	NEXTD;
+	/* nextLine;
 	{
-		PH::map<char, int> mymap;
+		Kocaeli::map<char, int> mymap;
 		mymap['x'] = 1001;
 		mymap['y'] = 2002;
 		mymap['z'] = 3003;
 		std::cout << "mymap contains:\n";
-		PH::pair<char, int> highest = *mymap.rbegin(); // last element
-		PH::map<char, int>::iterator it = mymap.begin();
+		Kocaeli::pair<char, int> highest = *mymap.rbegin(); // last element
+		Kocaeli::map<char, int>::iterator it = mymap.begin();
 		do
 		{
 			std::cout << it->first << " => " << it->second << '\n';
 		} while (mymap.value_comp()(*it++, highest));
-	}
-	NEXTD;
+	} */
+	nextLine;
 	{
-		PH::map<char, int> mymap;
-		PH::map<char, int>::iterator itlow, itup;
+		Kocaeli::map<char, int> mymap;
+		Kocaeli::map<char, int>::iterator itlow, itup;
 		mymap['a'] = 20;
 		mymap['b'] = 40;
 		mymap['c'] = 60;
@@ -202,39 +201,39 @@ int main()
 		std::cout << itup->first << std::endl;
 		mymap.erase(itlow, itup); // erases [itlow,itup)
 		// print content:
-		for (PH::map<char, int>::iterator it = mymap.begin(); it != mymap.end(); ++it)
+		for (Kocaeli::map<char, int>::iterator it = mymap.begin(); it != mymap.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<char, int> mymap;
+		Kocaeli::map<char, int> mymap;
 		mymap['a'] = 10;
 		mymap['b'] = 20;
 		mymap['c'] = 30;
-		PH::pair<PH::map<char, int>::iterator, PH::map<char, int>::iterator> ret;
+		Kocaeli::pair<Kocaeli::map<char, int>::iterator, Kocaeli::map<char, int>::iterator> ret;
 		ret = mymap.equal_range('b');
 		std::cout << "lower bound points to: ";
 		std::cout << ret.first->first << " => " << ret.first->second << '\n';
 		std::cout << "upper bound points to: ";
 		std::cout << ret.second->first << " => " << ret.second->second << '\n';
 	}
-	NEXTD;
+	nextLine;
 	{
 		int psize;
-		PH::map<char, int> mymap;
-		PH::pair<const char, int> *p;
+		Kocaeli::map<char, int> mymap;
+		Kocaeli::pair<const char, int> *p;
 
 		// allocate an array of 5 elements using mymap's allocator:
 		p = mymap.get_allocator().allocate(5);
 
 		// assign some values to array
-		psize = sizeof(PH::map<char, int>::value_type) * 5;
+		psize = sizeof(Kocaeli::map<char, int>::value_type) * 5;
 
 		std::cout << "The allocated array has a size of " << psize << " bytes.\n";
 
 		mymap.get_allocator().deallocate(p, 5);
 	}
-	NEXTD;
+	nextLine;
 	{
 		std::map<char, int> foo, bar;
 		foo['a'] = 100;
@@ -256,16 +255,16 @@ int main()
 		if (foo >= bar)
 			std::cout << "foo is greater than or equal to bar\n";
 	}
-	NEXTD;
+	nextLine;
 	{
-		PH::map<int, int> mp;
+		Kocaeli::map<int, int> mp;
 		for (int i = 0; i < 5; i++)
 		{
-			mp.insert(PH::make_pair(i, i * 2));
+			mp.insert(Kocaeli::make_pair(i, i * 2));
 		}
 		// mp.print();
-		PH::map<int, int>::iterator it = mp.begin();
-		mp.insert(PH::make_pair(-1, 2));
+		Kocaeli::map<int, int>::iterator it = mp.begin();
+		mp.insert(Kocaeli::make_pair(-1, 2));
 		std::cout << it->first << " " << it->second <<  std::endl;
 		// mp.print();
 		for (; it != mp.end(); it++)
