@@ -111,7 +111,7 @@ int main()
 		for (it = anothermap.begin(); it != anothermap.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 		// mymap.prettyPrint();
-	}exit(1);
+	}
 	nextLine;
 	{
 		Kocaeli::map<char, int> mymap;
@@ -171,20 +171,6 @@ int main()
 		for (Kocaeli::map<char, int>::iterator it = bar.begin(); it != bar.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 	}
-	/* nextLine;
-	{
-		Kocaeli::map<char, int> mymap;
-		mymap['x'] = 1001;
-		mymap['y'] = 2002;
-		mymap['z'] = 3003;
-		std::cout << "mymap contains:\n";
-		Kocaeli::pair<char, int> highest = *mymap.rbegin(); // last element
-		Kocaeli::map<char, int>::iterator it = mymap.begin();
-		do
-		{
-			std::cout << it->first << " => " << it->second << '\n';
-		} while (mymap.value_comp()(*it++, highest));
-	} */
 	nextLine;
 	{
 		Kocaeli::map<char, int> mymap;
@@ -272,4 +258,8 @@ int main()
 			std::cout << it->first << " " << it->second << std::endl;
 		}
 	}
+	std::cout << "\e[1;91m===============\n";
+	std::cout << "\e[1;91m█▀▄▀█ █▀▀█ █▀▀█ \n█░▀░█ █▄▄█ █░░█ \n▀░░░▀ ▀░░▀ █▀▀▀\necayir\n";
+	std::cout << "\e[1;91m===============\n";
+
 }
