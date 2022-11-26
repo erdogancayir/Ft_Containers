@@ -14,7 +14,7 @@ namespace ft
 
 		explicit pair() : first(), second() {}
 		template < class T1, class T2 >
-		pair(const class<T1, T2> &oth) : first(oth.first), second(oth.second) {}
+		pair(const pair<T1, T2> &oth) : first(oth.first), second(oth.second) {}
 		pair(const first_type &x, const second_type &y) : first(x), second(y) {}
 
 		template < class T1, class T2>

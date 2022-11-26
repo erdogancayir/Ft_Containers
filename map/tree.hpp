@@ -82,16 +82,9 @@ namespace ft
 			size_type	size() 		const	{ return (this->_size); };
 			size_type	max_size()	const	{ return (this->_alloc.max_size()); };
 
-			void	_destroy(Node_ptr node)
-			{
-				if (node)
-				{
-					_destroy(node->right);
-					_destroy(node->left);
-                    this->_alloc.destroy(node);
-					this->_alloc.deallocate(node, 1);
-				}
-			}
+			int	getSize() const { return (this->_size); };
+			value_type	get_Key() const { return (this->_root->key); };
+			value_type	get_height() const { return (this->_root->height); };
 
 			Node_ptr	_makeNode(value_type key)
 			{
@@ -101,13 +94,6 @@ namespace ft
 				node->left = node->right = nullptr;
 				node->parent = nullptr;
 				return (node);
-			}
-
-			void	_deleteNode(Node_ptr *node)
-			{
-				this->_alloc.destroy(*node);
-				this->_alloc.deallocate(*node, 1);
-				*node = nullptr;
 			}
 
 			int	_Height(Node_ptr node)
@@ -321,6 +307,161 @@ namespace ft
 				root = _reBalance(root);
 				return (root);
 			}
+			void	remove(T key)
+			{
+				this->root = _remove(this->_root, key);
+			}
+			void	_destroy(Node_ptr node)
+			{
+				if (node)
+				{
+					_destroy(node->right);
+					_destroy(node->left);
+                    this->_alloc.destroy(node);
+					this->_alloc.deallocate(node, 1);
+				}
+			}
+			void	_deleteNode(Node_ptr *node)
+			{
+				this->_alloc.destroy(*node);
+				this->_alloc.deallocate(*node, 1);
+				*node = nullptr;
+			}
+			void    clear()
+            {
+				if (this->_root != this->_end)
+				{
+					_destroy(this->_root);
+					this->_size = 0;
+					this->_root = this->_end;
+					this->_end->left = this->_root;
+				}
+			}
+			void	swap(Tree &_tree_)
+			{
+				size_type tmp_size = x._size;
+				allocator_type tmp_alloc = x._alloc;
+				Node_ptr tmp_root = x._root;
+				Node_ptr tmp_end = x._end;
+
+				x._size = this->_size;
+				_size = tmp_size;
+
+				x._alloc = this->_alloc;
+				this->_alloc = tmp_alloc;
+
+				x._end = this->_end;
+				this->_end = tmp_end;
+
+				x._root = this->_root;
+				this->_root = tmp_root;
+			}
+			Node_ptr	Min() const
+			{
+				Node_type * tmp = this->_root;
+
+				while (tmp != this->_end && tmp->left)
+					tmp = tmp->left;
+				return (tmp);
+			};
+			Node_ptr Max() const
+			{
+				Node_ptr tmp = this->_root;
+
+				while (tmp->right && tmp->right != this->_end)
+					tmp = tmp->right;
+				return (tmp);
+			};
+			Node_ptr search(key_type key) const
+			{
+				if (this->_root == this->_end)
+					return (this->_end);
+				else
+					return (_search(this->_root, key));
+			};
+		//aralığındaki değerden büyük olan ilk öğeyi veya böyle bir öğe bulunamazsa son öğeyi
+		// aralık valueden kucuk degerler.
+			/* Input : 10 20 30 40 50
+			Output : upper_bound for element 45 is at index 4 */
+			Node_ptr	upper_bound(key_type key) const
+			{
+				Node_ptr temp = Min();
+				while (!this->_comp(val, node->key.first))
+				{
+					node = successor(temp);
+					if (node == nullptr || node == this->_end)
+						return this->_end;
+				}
+				return (node);
+			}
+			//Input: 10 20 30 40 50
+			//Output: lower_bound for element 35 at index 3
+			Node_ptr	lower_bound(key_type key) const
+			{
+				Node_ptr node = Min();
+
+				while (!this->_comp(val, node->key.first))
+				{z
+					if (val == node->key.first)
+						break;
+					node = successor(node);
+					if (node == nullptr || node == this->_end)
+					{
+						return (this->_end);
+					}
+				}
+				return (node);
+			}
+	};
+	template<class Node_ptr>
+	Node_ptr _TreeMin(Node_ptr temp)
+	{
+		while (temp->left != nullptr)
+			temp = temp->left;
+		return (temp);
+	};
+	template<class Node_ptr>
+	Node_ptr _TreeMax(Node_ptr temp)
+	{
+		while (temp->right != nullptr)
+			temp = temp->right;
+		return (temp);
+	};
+	//Bir düğümün sıralı ardılı, sağ alt ağacında en az değere 
+	//sahip olan düğümdür, yani sağ alt ağacının en soldaki çocuğu.
+	/*  Hangi ataların ardıl olduğunu bulmak için, 
+	ebeveyninin sol çocuğu olan bir node'la karşılaşana kadar ağaçta köke
+	doğru ilerleyebiliriz. Böyle bir node bulunursa, sıra dışı ardıl onun üst öğesidir; */
+	template<class Node_ptr>
+	Node_ptr successor(Node_ptr node)
+	{
+		if (node->right)
+			return (_TreeMin(node->right));
+
+		Node_ptr temp = node->parent;
+		while (temp && temp->right == node)
+		{
+			node = temp;
+			temp = temp->parent;
+		}
+		return (temp);
+	};
+	template<class Node_ptr>
+	Node_ptr predecessor(Node_ptr node)
+    {
+		if (node->left)
+			return (_TreeMax(node->left));
+		Node_ptr temp = node->parent;
+		while (temp && temp->left == node)
+		{
+			node = temp;
+            temp = temp->parent;
+		}
+		if (temp == nullptr)
+			return (node);
+		else
+			return (temp);
+	}
 };
 
 
