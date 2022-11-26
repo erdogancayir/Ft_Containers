@@ -3,9 +3,11 @@
 #include <stack>
 #include <exception>
 #include <utility>
-#include "vector/vector.hpp"
+#include "map/iterator.hpp"
 #include "map/map.hpp"
-#include "stack/stack.hpp"
+#include "map/tree.hpp"
+#include "map/pair.hpp"
+
 #define NEXTD std::cout << "<---------- ---------- ---------- ---------- ---------- ----------|---------- ---------- ---------- ---------- ---------- ----------|" << std::endl
 
 #ifndef PH

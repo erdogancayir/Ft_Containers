@@ -18,7 +18,7 @@ namespace ft
 		pair(const first_type &x, const second_type &y) : first(x), second(y) {}
 
 		template < class T1, class T2>
-		pair<T1,T2>	&operator=(class<T1, T2> &oth)
+		pair<T1,T2>	&operator=(const pair<T1, T2> &oth)
 		{
 			if (&oth != this)
 			{

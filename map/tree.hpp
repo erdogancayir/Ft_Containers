@@ -1,6 +1,8 @@
 #ifndef TREE_HPP
 # define TREE_HPP
 
+# include "iterator.hpp"
+
 namespace ft
 {
 	template < class T >
@@ -28,6 +30,7 @@ namespace ft
 			
 			//rebind, ayırıcı sınıfın bir yapı üyesi olarak tanımlanır; bu farklı bir ayırıcı oluşturur bize. Karışmayacak artık.
 			typedef typename allocator_type::template rebind< Node<T> >::other	allocator_node;//The member template class rebind provides a way to obtain an allocator for a different type
+			typedef typename allocator_node::reference							node_reference;
 			typedef typename allocator_node::const_reference					node_const_reference;
 			typedef typename allocator_node::difference_type					node_difference_type;
 			typedef typename allocator_node::pointer							node_pointer;
@@ -46,7 +49,7 @@ namespace ft
 			typedef typename allocator_type::size_type							size_type;
 
 			typedef typename value_type::first_type								key_type;
-			typedef typename value_type::seconde_type							mapped_type;
+			typedef typename value_type::second_type							mapped_type;
 
 			typedef ft::TreeIter<pointer, Node_ptr>								iterator;
 			typedef ft::TreeIter<const_pointer, Node_ptr>		               	const_iterator;
@@ -208,7 +211,7 @@ namespace ft
 				Node_ptr t = y->left;
 				Node_ptr p = node->parent;
 				y->left = node;
-				node->right = T2;
+				node->right = t;
 				if (p != this->_end)
 				{
 					if (p->right == node)
@@ -220,7 +223,7 @@ namespace ft
 				node->parent = y;
 				if (t != nullptr)
 					t->parent = node;
-				x->height = std::max(_Height(nodex->left), _Height(node->right)) + 1;
+				node->height = std::max(_Height(node->left), _Height(node->right)) + 1;
 				y->height = std::max(_Height(y->left), _Height(y->right)) + 1;
 				return y;
 			}
@@ -230,7 +233,7 @@ namespace ft
 				Node_ptr t = y->right;
 				Node_ptr p = Node->parent;
 			    y->right = Node;
-                Node->left = T2;
+                Node->left = t;
 				if (p != this->_end)
 				{
 					if (p->left == Node)
@@ -254,7 +257,7 @@ namespace ft
 					return node;
 				else if (this->_comp(key, node->key.first))
 					return (_searh(node->left, key));
-				else if (this->_comp(node->key.first, key));
+				else if (this->_comp(node->key.first, key))
 					return (_search(node->right, key));
 				return (this->_end);
 			}
@@ -339,21 +342,21 @@ namespace ft
 			}
 			void	swap(Tree &_tree_)
 			{
-				size_type tmp_size = x._size;
-				allocator_type tmp_alloc = x._alloc;
-				Node_ptr tmp_root = x._root;
-				Node_ptr tmp_end = x._end;
+				size_type tmp_size = _tree_._size;
+				allocator_type tmp_alloc = _tree_._alloc;
+				Node_ptr tmp_root = _tree_._root;
+				Node_ptr tmp_end = _tree_._end;
 
-				x._size = this->_size;
+				_tree_._size = this->_size;
 				_size = tmp_size;
 
-				x._alloc = this->_alloc;
+				_tree_._alloc = this->_alloc;
 				this->_alloc = tmp_alloc;
 
-				x._end = this->_end;
+				_tree_._end = this->_end;
 				this->_end = tmp_end;
 
-				x._root = this->_root;
+				_tree_._root = this->_root;
 				this->_root = tmp_root;
 			}
 			Node_ptr	Min() const
@@ -386,22 +389,22 @@ namespace ft
 			Node_ptr	upper_bound(key_type key) const
 			{
 				Node_ptr temp = Min();
-				while (!this->_comp(val, node->key.first))
+				while (!this->_comp(key, temp->key.first))
 				{
-					node = successor(temp);
-					if (node == nullptr || node == this->_end)
+					temp = successor(temp);
+					if (temp == nullptr || temp == this->_end)
 						return this->_end;
 				}
-				return (node);
+				return (temp);
 			}
 			//Input: 10 20 30 40 50
 			//Output: lower_bound for element 35 at index 3
-			Node_ptr	lower_bound(key_type key) const
+			Node_ptr	lower_bound(key_type val) const
 			{
 				Node_ptr node = Min();
 
 				while (!this->_comp(val, node->key.first))
-				{z
+				{
 					if (val == node->key.first)
 						break;
 					node = successor(node);
