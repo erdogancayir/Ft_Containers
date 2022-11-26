@@ -71,7 +71,7 @@ int main()
 	{
 		try
 		{
-			std::cout << "========== MINE ==========" << std::endl;
+			std::cout << "========== MINE - STACK ==========" << std::endl;
 			ft::stack<int>    st;
 			ft::stack<int>    st2;
 
@@ -92,6 +92,7 @@ int main()
 			std::cerr << e.what() << '\n';
 		}
 	}
+	std::cout << "\e[1;34m█▀▀ ▀▀█▀▀ █▀▀█ █▀▀ █─█\n▀▀█ ──█── █▄▄█ █── █▀▄ \n▀▀▀ ──▀── ▀──▀ ▀▀▀ ▀─▀ \n";
 	return (0);
 }
 

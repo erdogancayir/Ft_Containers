@@ -27,9 +27,9 @@ namespace ft
 
         protected:
 			template <class _T, class _C>
-				friend bool operator== (const stack<_T ,_C>& lhs, const stack<_T ,_C>& rhs);
+				friend bool operator== (const stack<_T ,_C>& lhs, const stack<_T ,_C>& rhs);// A friend class can access private and protected members of other class
 			template <class _T, class _C>
-				friend bool operator!= (const stack<_T ,_C>& lhs, const stack<_T ,_C>& rhs);
+				friend bool operator!= (const stack<_T ,_C>& lhs, const stack<_T ,_C>& rhs);// disaridaki overriding etc. yapabilecek olmus oldu.
 			template <class _T, class _C>
 				friend bool operator<  (const stack<_T ,_C>& lhs, const stack<_T ,_C>& rhs);
 			template <class _T, class _C>
