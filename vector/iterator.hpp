@@ -19,7 +19,7 @@ namespace ft
             typedef typename iterator_traits<T>::pointer            pointer;
             typedef typename iterator_traits<T>::reference          reference;
         private:
-            iterator_type   _iter;
+            iterator_type   _iter; //my_vec
         public:
             VectorIter() : _iter(nullptr) {};
             explicit VectorIter(iterator_type obj) : _iter(obj) {}

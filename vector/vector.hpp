@@ -51,7 +51,7 @@ namespace ft
 			size_type	max_size()	const	{ return (this->_alloc.max_size()); };
 			void	reserve(size_type n)
 			{
-				if (n > capacity())
+				if (n > capacity()) // new allocate with temp, at last vec = temp
 				{
 					value_type *temp = this->_alloc.allocate(n);
 					if (this->_vec)
@@ -67,7 +67,7 @@ namespace ft
 					this->_vec = temp;
 				}
 			}
-			void	resize(size_type n, value_type val = value_type()) // elemanlari ekleyerek veya silerek kabin içeriğini fiilen değiştiriyor.
+			void	resize(size_type n, value_type val = value_type()) // elemanlari ekleyerek veya silerek kabin içeriğini fiilen değiştiriyorum.
 			{
 				if (n != this->_size)
 				{
@@ -111,7 +111,7 @@ namespace ft
 			const_iterator			begin() const			{ return (const_iterator(this->_vec)); };
 			iterator				end()					{ return (iterator(begin() + size())); };
 			const_iterator			end() const				{ return (const_iterator(begin() + size())); };
-			reverse_iterator		rbegin()				{ return (reverse_iterator((end() - 1).base())); };
+			reverse_iterator		rbegin()				{ return (reverse_iterator((end() - 1).base())); }; //class to int* end() - 1 class return eder.
 			const_reverse_iterator	rbegin() const			{ return (const_reverse_iterator((end() - 1).base())); };
 			reverse_iterator		rend()					{ return (reverse_iterator((begin() - 1).base())); };
 			const_reverse_iterator	rend() const			{ return (const_reverse_iterator((begin() - 1).base())); };
@@ -136,7 +136,7 @@ namespace ft
 			void	assign(size_type n, const value_type &val)
 			{
 				clear();	// i am using it to destroy the vector;
-				if (n > capacity())
+				if (n > capacity()) // if (capacity() less than n, i increase capacity.)
 				{
 					this->_alloc.deallocate(this->_vec, capacity());
 					this->_vec = this->_alloc.allocate(n);

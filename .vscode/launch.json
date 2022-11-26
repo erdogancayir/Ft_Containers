@@ -8,7 +8,7 @@
             "name": "(lldb) Başlat",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/ecayir/Desktop/new/a.out",
+            "program": "/Users/ecayir/Desktop/my/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
