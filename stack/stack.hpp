@@ -2,15 +2,15 @@
 
 namespace ft
 {
-    template <class Type, class Container = vector<Type> >
+    template <class Type, class Container = vector<Type> > //Stacks are a type of container adaptors with LIFO(Last In First Out) type of working,
     class stack
     {
         public:
-            typedef Type                            value_type;
-            typedef Container                       container_type;
-            typedef typename container_type::reference       reference; 
-            typedef typename container_type::const_reference const_reference;
-            typedef typename container_type::size_type       size_type;
+            typedef Type                            			value_type;
+            typedef Container                       			container_type;
+            typedef typename container_type::reference      	reference; 
+            typedef typename container_type::const_reference	const_reference;
+            typedef typename container_type::size_type       	size_type;
         protected:
             container_type c;
         
