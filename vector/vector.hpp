@@ -35,12 +35,12 @@ namespace ft
 			value_type		*_vec;
 			allocator_type	_alloc;
 		public:
-			explicit vector (const allocator_type &alloc = allocator_type()) : _alloc(alloc), _size(0), _capacity(0), _vec(nullptr) {};
-			explicit vector (size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) : _alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
+			explicit vector (const allocator_type &alloc = allocator_type()) : _size(0), _capacity(0), _vec(nullptr), _alloc(alloc) {};
+			explicit vector (size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) : _size(0), _capacity(0), _vec(nullptr), _alloc(alloc)
 			{ assign(n, val); };
 			template < class InputIterator >
 			explicit vector (InputIterator first, InputIterator sec, const allocator_type &alloc = allocator_type(), typename ft::enable_if<!is_integral<InputIterator>::value, bool>::type = true):
-			_alloc(alloc), _size(0), _capacity(0), _vec(nullptr)
+			_size(0), _capacity(0), _vec(nullptr), _alloc(alloc)
 			{ assign(first, sec); };
 			vector( const vector &obj) : _size(0), _capacity(0), _vec(nullptr) { *this = obj; };
 		
@@ -123,13 +123,13 @@ namespace ft
 			{
 				difference_type len = sec - first;
 				clear();
-				if (len > capacity())
+				if (len > (difference_type)capacity())
 				{
 					this->_alloc.deallocate(this->_vec, capacity());
 					this->_vec = this->_alloc.allocate(len);
 					this->_capacity = len;
 				}
-				for (size_t i = 0; i < len; i++)
+				for (size_t i = 0; i < (size_t)len; i++)
 					this->_alloc.construct(this->_vec + i, *(first + i));
 				this->_size = len;
 			}
@@ -152,7 +152,7 @@ namespace ft
 				if (size() == capacity())
 					reserve(capacity() + 1);
 				iterator _it = end();
-				for (size_t i = 0; i < len; i++)
+				for (size_t i = 0; i < (size_t)len; i++)
 				{
 					*(_it) = *(_it - 1);
 					_it--;
@@ -173,7 +173,7 @@ namespace ft
 						reserve(capacity() * 2);
 				}
 				iterator _it = end() - 1;
-				for (size_t i = 0; i < len; i++)
+				for (size_t i = 0; i < (size_t)len; i++)
 				{
 					*(_it + n) = *_it;
 					_it--;
@@ -197,13 +197,13 @@ namespace ft
 						reserve(capacity() * 2);
 				}
 				iterator _it = end() - 1;
-				for (size_t i = 0; i < last_len; i++)
+				for (size_t i = 0; i < (size_t)last_len; i++)
 				{
 					*(_it + diff) = *(_it);
 					_it--; 
 				}
 				_it = begin() + first_len;
-				for (size_t i = 0; i < diff; i++)
+				for (size_t i = 0; i < (size_t)diff; i++)
 					*(_it) = *(first++);
 				this->_size += diff;
 			}

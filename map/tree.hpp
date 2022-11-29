@@ -58,7 +58,7 @@ namespace ft
 			Node_ptr									_end;
 			int											_size;
 		public:
-			Tree(const key_compare &compare = key_compare(), const allocator_type& alloc = allocator_type()): _size(0), _comp(compare)
+			Tree(const key_compare &compare = key_compare(), const allocator_type& alloc = allocator_type()): _comp(compare), _size(0)
 			{
 				this->_alloc = alloc;
 				this->_end = this->_makeNode(value_type());
