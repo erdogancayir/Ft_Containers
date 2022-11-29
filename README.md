@@ -3,4 +3,4 @@ The aim of this project is to understand how the containers of the STL, some int
 In this project, I re-implement a few container types of the C++ standard template library. I have to comply with the C++98 standard, so any later feature of the containers MUST NOT be implemented, but every C++98 feature (even deprecated ones) is expected.
 
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c++.svg)](https://forthebadge.com)
