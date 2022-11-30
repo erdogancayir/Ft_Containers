@@ -25,16 +25,6 @@ int main()
     }
 	nextLine;
     {
-        std::cout << "~~~~~~~~~~ Vector Assign content (operator=) ~~~~~~~~~~" << std::endl;
-        ecayir::Vector<int> ecole(5, 5);
-        ecayir::Vector<int> Kocaeli(2, 2);
-        ecole = Kocaeli;
-        ecole = ecayir::Vector<int>();
-        std::cout << "Ecole size: " << ecole.size() << "\n";
-        std::cout << "Kocaeli size: " << Kocaeli.size() << "\n";
-    }
-	nextLine;
-    {
         std::cout << "~~~~~~~~~~ Return iterator to beginning ~~~~~~~~~~" << std::endl;
         ecayir::Vector<int> vec;
         for (int i=1; i<=5; i++)
