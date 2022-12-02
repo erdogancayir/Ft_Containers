@@ -7,11 +7,11 @@ In this project, I re-implement a few container types of the C++ standard templa
 ```
 `
 git clone https://github.com/erdogancayir/Ft_Containers.git
-###vector
+vector
 make vectorr
-###stack
+stack
 make stackk
-###map
+map
 make mapp
 ----
 ./container
